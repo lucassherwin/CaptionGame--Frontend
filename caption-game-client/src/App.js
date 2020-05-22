@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar.js'
+import PostPage from './components/PostPage.js'
+import NewPostForm from './components/NewPostForm.js'
+import Newsfeed from './components/Newsfeed.js'
+import ProfilePage from './components/ProfilePage.js'
 
-function App() {
+
+class App extends Component {
+
+  componentDidMount() {
+    console.log('test')
+  }
+  render() {
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +32,7 @@ function App() {
       </header>
     </div>
   );
+  }
 }
 
 export default App;
