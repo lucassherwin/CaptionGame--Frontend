@@ -12,6 +12,9 @@ class App extends Component {
 
   componentDidMount() {
     console.log('test')
+    fetch('http://localhost:3001/posts')
+    .then(resp => resp.json())
+    .then(data => console.log(data))
   }
   render() {
   return (
