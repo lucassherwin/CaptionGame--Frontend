@@ -4,7 +4,7 @@ import CaptionDisplay from './CaptionDisplay'
 export default class Post extends Component {
     render(){
         return(
-            null
+            <div> Post text</div>
         )
     }
 }
