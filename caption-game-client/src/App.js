@@ -20,17 +20,7 @@ class App extends Component {
   return (
     
     <div className="App">
-      <header>
-      <Navbar />
-      </header>
-      
-      
-      <body>
-      <Newsfeed />
-      </body>
-      
-       
-
+      <ProfilePage />
     </div>
   );
   }
