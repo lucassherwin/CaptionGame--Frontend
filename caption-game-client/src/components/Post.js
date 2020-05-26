@@ -12,7 +12,7 @@ export default class Post extends Component {
             <div>
                 <div>
                     <NavLink
-                    onClick={() => this.props.returnFunc(this.props.postObj.id)}
+                    onClick={() => this.props.returnFunc(this.props.postObj)}
                     to={`/PostPage/${this.props.postObj.id}`}
                     >
                     See full post

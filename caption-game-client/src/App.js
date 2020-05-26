@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     currentUserId: 1,
     currentPostId: null,
+    currentPostObj: null,
     currentUser: {
       posts: [],
       captions: [],
@@ -30,9 +31,11 @@ class App extends Component {
     this.getUserName(1)
     this.getUserCaptions(1)
   }
-  returnId = (id) => {
-    console.log(id)
-    this.setState({currentPostId: id})
+
+  returnPostObj = (obj) => {
+    console.log(obj)
+    this.setState({currentPostObj: obj, currentPostId: obj.id})
+  
 }
   getUserPosts = (id) => {
     fetch('http://localhost:3001/posts')
@@ -60,12 +63,12 @@ class App extends Component {
     
         <Router>
         <Navbar />
-        <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
+        <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnPostObj}/>} />
         <Route exact path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
       
         <Route exact path="/post" component={NewPostForm} />
         
-        <Route path={`/PostPage/${this.state.currentPostId}`} render={(props) => <PostPage {...props} />} />
+        <Route path={`/PostPage/${this.state.currentPostId}`} render={(props) => <PostPage {...props} postObj={this.state.currentPostObj}/>} />
                        
         
       </Router>
