@@ -1,22 +1,27 @@
 import React, {Component} from 'react';
 import CaptionDisplay from './CaptionDisplay'
-import {NavLink} from 'react-router-dom';
+import {NavLink, BrowserRouter as Router, Route} from 'react-router-dom';
 import PostPage from './PostPage'
 
 export default class Post extends Component {
         
     
     render(){
-        console.log(this.props.postObj)
+        console.log(this.props.postObj.id)
         return(
             <div>
-               <NavLink
-                   to="/PostPage"
-                   >
+                <div>
+                    <NavLink
+                    onClick={() => this.props.returnFunc(this.props.postObj.id)}
+                    to={`/PostPage/${this.props.postObj.id}`}
+                    >
                     See full post
-                   </NavLink> 
-            <CaptionDisplay />
+                   </NavLink>
+                </div>
+                  
             </div>
+            // <CaptionDisplay />
+           
         )
     }
 }
