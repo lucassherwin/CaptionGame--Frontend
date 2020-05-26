@@ -7,6 +7,7 @@ import NewPostForm from './components/NewPostForm.js'
 import Newsfeed from './components/Newsfeed.js'
 import ProfilePage from './components/ProfilePage.js'
 import { BrowserRouter as Router, Route, Switch,  } from 'react-router-dom';
+import Login from './components/Login.js'
 
 class App extends Component {
   state = {
@@ -52,19 +53,22 @@ class App extends Component {
   return (
     
     <div className="App">
-     <Router>
-     <Navbar />
-      <Route path="/newsfeed" component={Newsfeed} />
-      <Route path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
+    <Login />
+        <ProfilePage />
+        <Router>
+        <Navbar />
+        <Route path="/newsfeed" component={Newsfeed} />
+        <Route path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
       
-      <Route path="/post" component={PostPage} />
-     </Router>
-      
-      
-      
+        <Route path="/post" component={PostPage} />
+      </Router>
     </div>
   );
   }
 }
 
 export default App;
+
+
+
+//comment
