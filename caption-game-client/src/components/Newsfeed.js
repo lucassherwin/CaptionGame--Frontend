@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Post from './Post'
+import {NavLink} from 'react-router-dom';
 
 export default class Newsfeed extends Component {
 
