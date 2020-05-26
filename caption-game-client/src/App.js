@@ -60,7 +60,7 @@ class App extends Component {
         <Route path="/newsfeed" component={Newsfeed} />
         <Route path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
       
-        <Route path="/post" component={PostPage} />
+        <Route path="/post" component={NewPostForm} />
       </Router>
     </div>
   );
