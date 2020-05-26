@@ -5,7 +5,7 @@ import UserCaption from './UserCaption'
 export default class ProfilePage extends Component {
     
     render(){
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <div>
                 <h1>This is the profile page</h1>

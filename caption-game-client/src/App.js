@@ -20,10 +20,10 @@ class App extends Component {
     }
   }
   changePage = (event) => {
-    console.log(event.innerText)
+    // console.log(event.innerText)
   }
   componentDidMount() {
-    console.log('test')
+    // console.log('test')
     // fetch('http://localhost:3001/posts')
     // .then(resp => resp.json())
     // .then(data => console.log(data))
@@ -31,30 +31,46 @@ class App extends Component {
     this.getUserName(1)
     this.getUserCaptions(1)
   }
+
+  // loggedIn = (event) => {
+  //   event.preventDefault();
+
+  //   console.log(event)
+    
+  //   let userID = event.target.username
+
+  //   this.setState({currentUserId: userID})
+
+  //   this.getUserPosts(userID)
+  //   this.getUserName(userID)
+  //   this.getUserCaptions(userID)
+  // }
+
   getUserPosts = (id) => {
     fetch('http://localhost:3001/posts')
     .then(resp => resp.json())
     .then(data => this.setState({currentUser: {...this.state.currentUser, posts: data.filter(post => post.user_id === id)}}))
-    console.log(this.state.currentUser)
+    // console.log(this.state.currentUser)
   }
+
   getUserName = (idvar) => {
     fetch('http://localhost:3001/users')
     .then(resp => resp.json())
     .then(data => this.setState({currentUser: {...this.state.currentUser, username: data.find(user => user.id === idvar).name}}))
-    console.log(this.state.currentUser)
+    // console.log(this.state.currentUser)
   }
+
   getUserCaptions = (idvar) => {
     fetch('http://localhost:3001/captions')
     .then(resp => resp.json())
     .then(data => this.setState({currentUser: {...this.state.currentUser, captions: data.filter(caption => caption.user_id === idvar)}}))
-    console.log(this.state.currentUser)
+    // console.log(this.state.currentUser)
   }
+
   render() {
-  return (
-    
+  return (  
     <div className="App">
-    <Login />
-        <ProfilePage />
+      {/* <Login loggedIn={this.loggedIn}/> */}
         <Router>
         <Navbar />
         <Route path="/newsfeed" component={Newsfeed} />

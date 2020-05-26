@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import CaptionDisplay from './CaptionDisplay'
-import {NavLink} from 'react-router-dom';
+import {NavLink, BrowserRouter as Router, Route} from 'react-router-dom';
 import PostPage from './PostPage'
+
 
 export default class Post extends Component {
         
@@ -10,11 +11,20 @@ export default class Post extends Component {
         console.log(this.props.postObj)
         return(
             <div>
-               <NavLink
-                   to="/PostPage"
-                   >
+            <div>
+            <NavLink 
+                    to="/postPage"
+                >
                     See full post
-                   </NavLink> 
+                </NavLink> 
+            </div>
+            <div>
+                <Router>
+                    <Route path="/postPage" component={PostPage} />
+                </Router>
+            </div>
+                
+                {/* <PostPage /> */}
             <CaptionDisplay />
             </div>
         )

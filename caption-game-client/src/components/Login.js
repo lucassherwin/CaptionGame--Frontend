@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 export class Login extends Component {
+    state = {
+        userID: null
+    }
+
     render() {
         return (
             <div>
@@ -8,14 +12,14 @@ export class Login extends Component {
                 <div>
                     <form>
                         <label>
-                            Username: 
-                            <input type='text' name='username' />
+                            UserID: 
+                            <input type='text' name='username' value={this.state.userID} onChange={(event) => this.setState({userID: event.target.value})}/>
                         </label>
                         <label>
                             Password: 
                             <input type='password' name='password' />
                         </label>
-                        <input type='submit' name='login' value='Login' />
+                        <input type='submit' name='login' value='Login' onSubmit={(event) => this.props.loggedIn}/>
                     </form>
                 </div>
             </div>
