@@ -4,7 +4,7 @@ export class UserCaption extends Component {
     render() {
         return (
             <div>
-                <h3>User Caption test</h3>
+                <h3>{this.props.captionObj.top_text}</h3>
             </div>
         )
     }

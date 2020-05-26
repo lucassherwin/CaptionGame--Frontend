@@ -7,7 +7,7 @@ import AddCaptionForm from './AddCaptionForm'
 export default class PostPage extends Component {
     render(){
         return(
-            null
+            <div>Post page</div>
         )
     }
 }
