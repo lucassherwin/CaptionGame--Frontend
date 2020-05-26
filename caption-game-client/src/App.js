@@ -9,10 +9,6 @@ import ProfilePage from './components/ProfilePage.js'
 import { BrowserRouter as Router, Route, Switch,  } from 'react-router-dom';
 import Login from './components/Login.js'
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 class App extends Component {
   state = {
     currentUserId: 1,
