@@ -12,6 +12,7 @@ import Login from './components/Login.js'
 class App extends Component {
   state = {
     currentUserId: 1,
+    currentPostId: null,
     currentUser: {
       posts: [],
       captions: [],
@@ -19,9 +20,7 @@ class App extends Component {
       bio: ''
     }
   }
-  changePage = (event) => {
-    console.log(event.innerText)
-  }
+  
   componentDidMount() {
     console.log('test')
     // fetch('http://localhost:3001/posts')
@@ -31,6 +30,10 @@ class App extends Component {
     this.getUserName(1)
     this.getUserCaptions(1)
   }
+  returnId = (id) => {
+    console.log(id)
+    this.setState({currentPostId: id})
+}
   getUserPosts = (id) => {
     fetch('http://localhost:3001/posts')
     .then(resp => resp.json())
@@ -54,13 +57,17 @@ class App extends Component {
     
     <div className="App">
     <Login />
-        <ProfilePage />
+    
         <Router>
         <Navbar />
-        <Route path="/newsfeed" component={Newsfeed} />
-        <Route path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
+        <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
+        <Route exact path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
       
-        <Route path="/post" component={NewPostForm} />
+        <Route exact path="/post" component={NewPostForm} />
+        
+        <Route path={`/PostPage/${this.state.currentPostId}`} render={(props) => <PostPage {...props} />} />
+                       
+        
       </Router>
     </div>
   );
