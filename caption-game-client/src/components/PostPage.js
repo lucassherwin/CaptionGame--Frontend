@@ -5,36 +5,44 @@ import Timer from './Timer'
 import AddCaptionForm from './AddCaptionForm'
 
 export default class PostPage extends Component {
-    state={
+    state = {
         topText: 'top',
-        bottomText: 'bottom'
+        bottomText: 'bottom',
+        currentPost: null
     }
+
     handleTopChange = (event) => {
         this.setState({topText: event.target.value})
     }
+
     handleBottomChange = (event) => {
         this.setState({bottomText: event.target.value})
     }
-    handleSubmit = (event) => {
 
+    handleSubmit = (event) => {
         event.preventDefault()
+
         fetch('http://localhost:3001/captions', {
             method: 'POST',
             headers: {
                 "Accepts": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({top_text: this.state.topText, bottom_text: this.state.bottomText, user_id: 1, post_id: 1})
+            body: JSON.stringify({top_text: this.state.topText, bottom_text: this.state.bottomText, user_id: this.props.currentUser.userID, post_id: this.props.currentPostObj.id})
         })
         .then(response => response.json())
         .then(data => console.log(data))
     }
- 
+
+    componentDidMount() {
+        this.setState({currentPost: this.props.currentPostObj})
+    }
+
     render(){
-console.log(this.props.postObj)
         return(
             <div>Post page
-                <img src={this.props.postObj.img_url} alt=''></img>
+                <img src={this.state.currentPost.img_url} alt=''></img>
+                <p>{this.state.currentPost.img_url}</p>
                 <form>
                     <label>
                         Top Text
