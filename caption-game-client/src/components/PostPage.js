@@ -31,10 +31,10 @@ export default class PostPage extends Component {
     }
  
     render(){
-
+console.log(this.props.postObj)
         return(
             <div>Post page
-                {/* <img src={this.props.postObj.img_url} alt=''></img> */}
+                <img src={this.props.postObj.img_url} alt=''></img>
                 <form>
                     <label>
                         Top Text

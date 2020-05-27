@@ -14,6 +14,7 @@ class App extends Component {
     allUsers: [],
     currentUserId: null,
     currentPostId: null,
+    currentPostObj: null,
     currentUser: {
       posts: [],
       captions: [],
@@ -42,18 +43,23 @@ class App extends Component {
     this.getUserCaptions(currentUserObj.id)
     
     this.setState({currentUser: {...this.state.currentUser, userID: currentUserObj.id, username: currentUserObj.username}})
-    // this.setState({currentUser: {...this.state.currentUser, username: currentUserObj.username}})
-    
-    
-
-    // console.log('test', this.state.currentUser)
   }
 
   getUserPosts = (id) => {
     fetch('http://localhost:3001/posts')
     .then(resp => resp.json())
     .then(data => this.setState({currentUser: {...this.state.currentUser, posts: data.filter(post => post.user_id === id)}}))
+    // this.forceUpdate()
+    console.log(this.state.currentUser.posts)
+    // console.log('current setting posts')
     // console.log(this.state.currentUser)
+  }
+
+  addUserPost = (post) => {
+    //update state
+    let newPostArr = this.state.currentUser.posts
+    newPostArr.push(post)
+    this.setState({currentUser: {...this.state.currentUser, posts: newPostArr}})
   }
 
   getUserCaptions = (idvar) => {
@@ -70,9 +76,9 @@ class App extends Component {
         <Router>
         <Navbar />
         <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
-        <Route exact path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
+        <Route exact path="/profile" render={(props) => <ProfilePage {...props} getUserPosts={this.getUserPosts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
       
-        <Route exact path="/post" component={NewPostForm} />
+        <Route exact path="/post" render={(props) => <NewPostForm {...props} currentUser={this.state.currentUser} getUserPosts={this.getUserPosts} addUserPost={this.addUserPost} />} />
         
         <Route path={`/PostPage/${this.state.currentPostId}`} render={(props) => <PostPage {...props} />} />
 
