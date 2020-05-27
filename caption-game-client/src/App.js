@@ -12,6 +12,7 @@ import Login from './components/Login.js'
 class App extends Component {
   state = {
     currentUserId: 1,
+    currentPostId: null,
     currentUser: {
       posts: [],
       captions: [],
@@ -73,10 +74,13 @@ class App extends Component {
       {/* <Login loggedIn={this.loggedIn}/> */}
         <Router>
         <Navbar />
-        <Route path="/newsfeed" component={Newsfeed} />
-        <Route path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
+        <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
+        <Route exact path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
       
-        <Route path="/post" component={NewPostForm} />
+        <Route exact path="/post" component={NewPostForm} />
+        
+        <Route path={`/PostPage/${this.state.currentPostId}`} render={(props) => <PostPage {...props} />} />
+
       </Router>
     </div>
   );

@@ -8,7 +8,7 @@ export default class Post extends Component {
         
     
     render(){
-        console.log(this.props.postObj)
+        console.log(this.props.postObj.id)
         return(
             <div>
             <div>
@@ -27,6 +27,8 @@ export default class Post extends Component {
                 {/* <PostPage /> */}
             <CaptionDisplay />
             </div>
+            // <CaptionDisplay />
+           
         )
     }
 }

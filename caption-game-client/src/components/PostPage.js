@@ -13,11 +13,28 @@ export default class PostPage extends Component {
         this.setState({topText: event.target.value})
     }
     handleBottomChange = (event) => {
-        this.setState({BottomText: event.target.value})
+        this.setState({bottomText: event.target.value})
     }
+    handleSubmit = (event) => {
+
+        event.preventDefault()
+        fetch('http://localhost:3001/captions', {
+            method: 'POST',
+            headers: {
+                "Accepts": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({top_text: this.state.topText, bottom_text: this.state.bottomText, user_id: 1, post_id: 1})
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+ 
     render(){
+
         return(
             <div>Post page
+                {/* <img src={this.props.postObj.img_url} alt=''></img> */}
                 <form>
                     <label>
                         Top Text
@@ -27,9 +44,10 @@ export default class PostPage extends Component {
                         Bottom Text
                     <input onChange={this.handleBottomChange} type="text" value={this.state.bottomText} name="BottomText" />
                     </label>
-                    
-                    <input type="submit" value="submit" />
+                    <input type="submit" value="submit" onClick={this.handleSubmit} />
                 </form>
+                <p>Top Text: {this.state.topText}</p>
+                <p>Bottom Text: {this.state.bottomText}</p>
             </div>
         )
     }
