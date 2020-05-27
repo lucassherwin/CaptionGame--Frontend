@@ -11,53 +11,48 @@ import Login from './components/Login.js'
 
 class App extends Component {
   state = {
-    currentUserId: 1,
+    allUsers: [],
+    currentUserId: null,
     currentPostId: null,
     currentUser: {
       posts: [],
       captions: [],
       username: '',
-      bio: ''
+      userID: null
     }
   }
   changePage = (event) => {
     // console.log(event.innerText)
   }
   componentDidMount() {
-    // console.log('test')
-    // fetch('http://localhost:3001/posts')
-    // .then(resp => resp.json())
-    // .then(data => console.log(data))
-    this.getUserPosts(1)
-    this.getUserName(1)
-    this.getUserCaptions(1)
+    //store all current users from db in state
+    fetch('http://localhost:3001/users')
+    .then(resp => resp.json())
+    .then(data => this.setState({allUsers: data}))
   }
 
-  // loggedIn = (event) => {
-  //   event.preventDefault();
+  findUser = (event, username) => {
+    event.preventDefault();
 
-  //   console.log(event)
+    let currentUserObj = this.state.allUsers.find(user => user.username === username)
+    console.log('current user obj', currentUserObj)
+    // this.setState({currentUserId: currentUserObj.id})
+
+    this.getUserPosts(currentUserObj.id)
+    this.getUserCaptions(currentUserObj.id)
     
-  //   let userID = event.target.username
+    this.setState({currentUser: {...this.state.currentUser, userID: currentUserObj.id, username: currentUserObj.username}})
+    // this.setState({currentUser: {...this.state.currentUser, username: currentUserObj.username}})
+    
+    
 
-  //   this.setState({currentUserId: userID})
-
-  //   this.getUserPosts(userID)
-  //   this.getUserName(userID)
-  //   this.getUserCaptions(userID)
-  // }
+    // console.log('test', this.state.currentUser)
+  }
 
   getUserPosts = (id) => {
     fetch('http://localhost:3001/posts')
     .then(resp => resp.json())
     .then(data => this.setState({currentUser: {...this.state.currentUser, posts: data.filter(post => post.user_id === id)}}))
-    // console.log(this.state.currentUser)
-  }
-
-  getUserName = (idvar) => {
-    fetch('http://localhost:3001/users')
-    .then(resp => resp.json())
-    .then(data => this.setState({currentUser: {...this.state.currentUser, username: data.find(user => user.id === idvar).name}}))
     // console.log(this.state.currentUser)
   }
 
@@ -71,11 +66,11 @@ class App extends Component {
   render() {
   return (  
     <div className="App">
-      <Login />
+      <Login findUser={this.findUser}/>
         <Router>
         <Navbar />
         <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
-        <Route exact path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} userName={this.state.currentUser.username} userCaptions={this.state.currentUser.captions} />} />
+        <Route exact path="/profile" render={(props) => <ProfilePage {...props} userPosts={this.state.currentUser.posts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
       
         <Route exact path="/post" component={NewPostForm} />
         
