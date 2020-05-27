@@ -13,18 +13,13 @@ export default class Newsfeed extends Component {
     }
     componentDidMount() {
         fetch('http://localhost:3001/posts')
-           .then(resp => resp.json())
-           .then(data => this.setState({postList: data}))
+            .then(resp => resp.json())
+            .then(data => this.setState({postList: data}))
     }
-  
+
     render(){
         return(
-            
-            <div>
-                {this.state.postList.map(post => <Post key={post.id} postObj={post} returnFunc={this.props.setStateFunction} />)}
-            
-            </div>
-           
+            this.state.postList.map(post => <Post key={post.id} postObj={post} />)
         )
     }
 }

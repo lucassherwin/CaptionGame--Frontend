@@ -3,6 +3,7 @@ import CaptionDisplay from './CaptionDisplay'
 import {NavLink, BrowserRouter as Router, Route} from 'react-router-dom';
 import PostPage from './PostPage'
 
+
 export default class Post extends Component {
         
     
@@ -10,15 +11,21 @@ export default class Post extends Component {
         console.log(this.props.postObj.id)
         return(
             <div>
-                <div>
-                    <NavLink
-                    onClick={() => this.props.returnFunc(this.props.postObj.id)}
-                    to={`/PostPage/${this.props.postObj.id}`}
-                    >
+            <div>
+            <NavLink 
+                    to="/postPage"
+                >
                     See full post
-                   </NavLink>
-                </div>
-                  
+                </NavLink> 
+            </div>
+            <div>
+                <Router>
+                    <Route path="/postPage" component={PostPage} />
+                </Router>
+            </div>
+                
+                {/* <PostPage /> */}
+            <CaptionDisplay />
             </div>
             // <CaptionDisplay />
            
