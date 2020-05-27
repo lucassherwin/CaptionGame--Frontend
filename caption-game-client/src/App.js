@@ -55,6 +55,15 @@ class App extends Component {
     // console.log(this.state.currentUser)
   }
 
+  //getting the current post id
+  setCurrentPostObj = (post) => {
+    this.setState({currentPostId: post.id})
+    this.setState({currentPostObj: post})
+
+    // return post.id
+    // console.log('in app', this.state.currentPostId)
+}
+
   addUserPost = (post) => {
     //update state
     let newPostArr = this.state.currentUser.posts
@@ -75,12 +84,12 @@ class App extends Component {
       <Login findUser={this.findUser}/>
         <Router>
         <Navbar />
-        <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
+        <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setCurrentPostObj={this.setCurrentPostObj} currentUser={this.state.currentUser}/>} />
         <Route exact path="/profile" render={(props) => <ProfilePage {...props} getUserPosts={this.getUserPosts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
       
         <Route exact path="/post" render={(props) => <NewPostForm {...props} currentUser={this.state.currentUser} getUserPosts={this.getUserPosts} addUserPost={this.addUserPost} />} />
         
-        <Route path={`/PostPage/${this.state.currentPostId}`} render={(props) => <PostPage {...props} />} />
+        <Route exact path={`/postPage/:id`} render={(props) => <PostPage {...props} currentPostObj={this.state.currentPostObj} currentUser={this.state.currentUser} />} />
 
       </Router>
     </div>
