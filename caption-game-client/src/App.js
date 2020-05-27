@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar.js'
 import PostPage from './components/PostPage.js'
 import NewPostForm from './components/NewPostForm.js'
 import Newsfeed from './components/Newsfeed.js'
 import ProfilePage from './components/ProfilePage.js'
-import { BrowserRouter as Router, Route, Switch,  } from 'react-router-dom';
+import { BrowserRouter as Router, Route /*, Switch,*/  } from 'react-router-dom';
 import Login from './components/Login.js'
 
 class App extends Component {
@@ -71,7 +71,7 @@ class App extends Component {
   render() {
   return (  
     <div className="App">
-      {/* <Login loggedIn={this.loggedIn}/> */}
+      <Login />
         <Router>
         <Navbar />
         <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setStateFunction={this.returnId}/>} />
