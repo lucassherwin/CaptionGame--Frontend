@@ -18,6 +18,7 @@ export default class Newsfeed extends Component {
     }
 
     render(){
+        console.log(this.state.postList)
         return(
             this.state.postList.map(post => <Post key={post.id} postObj={post} setCurrentPostObj={this.props.setCurrentPostObj} currentUser={this.props.currentUser} />)
         )

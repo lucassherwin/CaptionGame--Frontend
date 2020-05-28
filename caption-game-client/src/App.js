@@ -6,7 +6,7 @@ import PostPage from './components/PostPage.js'
 import NewPostForm from './components/NewPostForm.js'
 import Newsfeed from './components/Newsfeed.js'
 import ProfilePage from './components/ProfilePage.js'
-import { BrowserRouter as Router, Route /*, Switch,*/  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import Login from './components/Login.js'
 
 class App extends Component {
@@ -84,12 +84,14 @@ class App extends Component {
       <Login findUser={this.findUser}/>
         <Router>
         <Navbar />
+        <Switch>
         <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setCurrentPostObj={this.setCurrentPostObj} currentUser={this.state.currentUser}/>} />
         <Route exact path="/profile" render={(props) => <ProfilePage {...props} getUserPosts={this.getUserPosts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
       
         <Route exact path="/post" render={(props) => <NewPostForm {...props} currentUser={this.state.currentUser} getUserPosts={this.getUserPosts} addUserPost={this.addUserPost} />} />
         
         <Route exact path={`/postPage/:id`} render={(props) => <PostPage {...props} currentPostObj={this.state.currentPostObj} currentUser={this.state.currentUser} />} />
+        </Switch>
 
       </Router>
     </div>

@@ -8,7 +8,7 @@ export default class PostPage extends Component {
     state = {
         topText: 'top',
         bottomText: 'bottom',
-        currentPost: null
+        currentPost: {}
     }
 
     handleTopChange = (event) => {
@@ -39,10 +39,11 @@ export default class PostPage extends Component {
     }
 
     render(){
+    console.log(this.props)
         return(
             <div>Post page
-                <img src={this.state.currentPost.img_url} alt=''></img>
-                <p>{this.state.currentPost.img_url}</p>
+                {/* <img src={this.props.currentPostObj.img_url} alt=''></img> */}
+                <p>{this.props.currentPostObj.img_url}</p>
                 <form>
                     <label>
                         Top Text
