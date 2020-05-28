@@ -41,6 +41,7 @@ export default class PostPage extends Component {
     }
 
     render(){
+    console.log(this.props)
         return(
             <div>Post page
                 {/* <img src={this.props.currentPostObj.img_url} alt=''></img> */}
