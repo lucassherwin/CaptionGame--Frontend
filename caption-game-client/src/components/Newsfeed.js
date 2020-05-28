@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ReactDOM from "react-dom";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+// import ReactDOM from "react-dom";
+// import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Post from './Post'
-import PostPage from './PostPage'
+// import PostPage from './PostPage'
 
 
 export default class Newsfeed extends Component {

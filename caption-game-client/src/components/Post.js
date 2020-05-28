@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CaptionDisplay from './CaptionDisplay'
 import {NavLink, BrowserRouter as Router, Route} from 'react-router-dom';
-import PostPage from './PostPage'
+// import PostPage from './PostPage'
 
 
 export default class Post extends Component {
@@ -20,7 +20,7 @@ export default class Post extends Component {
             <div>
             <div>
             <NavLink 
-                    onClick={() => this.props.setCurrentPostObj(this.props.postObj.id)}
+                    onClick={() => this.props.setCurrentPostObj(this.props.postObj)}
                     to={`/postPage/${this.props.postObj.id}`}
                 >
                     See full post

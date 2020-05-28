@@ -8,7 +8,7 @@ export default class PostPage extends Component {
     state = {
         topText: 'top',
         bottomText: 'bottom',
-        currentPost: null
+        currentPost: {}
     }
 
     handleTopChange = (event) => {
@@ -35,13 +35,16 @@ export default class PostPage extends Component {
     }
 
     componentDidMount() {
-        this.setState({currentPost: this.props.currentPostObj})
+        console.log('props on mount', this.props)
+        console.log('in mount', this.state.currentPost)
+        // this.setState({currentPost: this.props.currentPostObj})
     }
 
     render(){
         return(
             <div>Post page
-                <img src={this.state.currentPost.img_url} alt=''></img>
+                {/* <img src={this.props.currentPostObj.img_url} alt=''></img> */}
+                <p>{this.props.currentPostObj.img_url}</p>
                 <p>{this.state.currentPost.img_url}</p>
                 <form>
                     <label>
