@@ -20,7 +20,7 @@ export default class Post extends Component {
             <div>
             <div>
             <NavLink 
-                    onClick={() => this.props.setCurrentPostObj(this.props.postObj.id)}
+                    onClick={() => this.props.setCurrentPostObj(this.props.postObj)}
                     to={`/postPage/${this.props.postObj.id}`}
                 >
                     See full post
