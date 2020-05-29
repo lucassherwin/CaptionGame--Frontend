@@ -11,6 +11,7 @@ import Login from './components/Login.js'
 
 class App extends Component {
   state = {
+    showLogin: true,
     allUsers: [],
     currentUserId: null,
     currentPostId: null,
@@ -31,10 +32,16 @@ class App extends Component {
     .then(resp => resp.json())
     .then(data => this.setState({allUsers: data}))
   }
+addNewUser = (event, userObj) => {
+  let newUserArr = (this.state.allUsers)
+  newUserArr.push(userObj)
+  this.setState({allUsers: newUserArr})
+  this.findUser(event, userObj.username)
+}
 
   findUser = (event, username) => {
     event.preventDefault();
-
+    this.hideLogin();
     let currentUserObj = this.state.allUsers.find(user => user.username === username)
     console.log('current user obj', currentUserObj)
     // this.setState({currentUserId: currentUserObj.id})
@@ -63,7 +70,12 @@ class App extends Component {
     // return post.id
     // console.log('in app', this.state.currentPostId)
 }
-
+hideLogin = () => {
+  this.setState({showLogin: false})
+}
+showLogin = () => {
+  this.setState({showLogin: true})
+}
   addUserPost = (post) => {
     //update state
     let newPostArr = this.state.currentUser.posts
@@ -81,9 +93,9 @@ class App extends Component {
   render() {
   return (  
     <div className="App">
-      <Login findUser={this.findUser}/>
+      {this.state.showLogin ? <Login addNewUser={this.addNewUser} hideLogin={this.hideLogin} findUser={this.findUser}/> : null}
         <Router>
-        <Navbar />
+        <Navbar showLogin={this.showLogin} />
         <Switch>
         <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setCurrentPostObj={this.setCurrentPostObj} currentUser={this.state.currentUser}/>} />
         <Route exact path="/profile" render={(props) => <ProfilePage {...props} getUserPosts={this.getUserPosts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />

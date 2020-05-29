@@ -1,6 +1,44 @@
 .App {
   text-align: center;
 }
+.container {
+  position: relative;
+  /* text-align: center; */
+  color: red;
+  display: inline-block;
+  
+}
+.inputbox {
+  margin-left: auto;
+  margin-right: 50%;
+  text-align: left;
+}
+.top_text {
+  margin: 0 auto;
+  position: absolute;
+  top: 0%;
+  left: 10%;
+  width: 10%;
+}
+.bottom_text {
+  
+  position: absolute;
+  bottom: 0%;
+  left: 10%;
+  width: 10%;
+}
+
+.thumbnail {
+height: auto;
+width: 25%;
+}
+
+.post_image {
+  height: auto;
+  width: 50%;
+  margin-left: auto;
+  margin-right: 50%
+}
 
 .App-logo {
   height: 40vmin;
