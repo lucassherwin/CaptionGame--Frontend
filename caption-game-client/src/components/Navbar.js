@@ -30,6 +30,12 @@ export default class Navbar extends Component {
                 Search
                     </NavLink>
                 </div>
+                <div>
+                    <NavLink
+                    to="/" onClick={this.props.showLogin}>
+                        Sign Out
+                    </NavLink>
+                </div>
             </div>
           
             

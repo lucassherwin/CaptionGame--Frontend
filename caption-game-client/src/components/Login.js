@@ -45,6 +45,7 @@ export class Login extends Component {
 
     handleLogin = (event) => {
         event.preventDefault();
+        this.props.hideLogin();
         // console.log('username: ', this.state.userObj.username)
         // console.log('password: ', this.state.userObj.password)
 
@@ -60,6 +61,12 @@ export class Login extends Component {
             },
             body: JSON.stringify({username: this.state.userObj.username, password: this.state.userObj.password})
         })
+        .then(resp => resp.json())
+        
+        .then(data => {this.props.addNewUser(event, data)})
+        // {this.props.findUser(event, data.username)
+        // .then(data => console.log(data))
+        // .then(data => this.props.findUser(event, data.username))
     }
 
     render() {
