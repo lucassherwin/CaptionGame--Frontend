@@ -42,21 +42,25 @@ export default class PostPage extends Component {
     console.log(this.props)
         return(
             <div>Post page
-                {/* <img src={this.props.currentPostObj.img_url} alt=''></img> */}
-                <p>{this.props.currentPostObj.img_url}</p>
+                <div class="container">
+                    <img class="post_image" src={this.props.currentPostObj.img_url} alt=''></img>
+                    <p class="top_text" >{this.state.topText}</p>
+                    <p class="bottom_text" >{this.state.bottomText}</p>
+                </div>
+                
+                {/* <p>{this.props.currentPostObj.img_url}</p> */}
                 <form>
-                    <label>
+                    <label class="inputbox">
                         Top Text
-                    <input onChange={this.handleTopChange} type="text" value={this.state.topText} name="TopText" />
+                    <input class="inputbox" onChange={this.handleTopChange} type="text" value={this.state.topText} name="TopText" />
                     </label>
-                    <label>
+                    <label class="inputbox">
                         Bottom Text
-                    <input onChange={this.handleBottomChange} type="text" value={this.state.bottomText} name="BottomText" />
+                    <input class="inputbox" onChange={this.handleBottomChange} type="text" value={this.state.bottomText} name="BottomText" />
                     </label>
-                    <input type="submit" value="submit" onClick={this.handleSubmit} />
+                    <input class="inputbox" type="submit" value="submit" onClick={this.handleSubmit} />
                 </form>
-                <p>Top Text: {this.state.topText}</p>
-                <p>Bottom Text: {this.state.bottomText}</p>
+                
             </div>
         )
     }

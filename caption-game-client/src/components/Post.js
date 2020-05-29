@@ -23,8 +23,9 @@ export default class Post extends Component {
                     onClick={() => this.props.setCurrentPostObj(this.props.postObj)}
                     to={`/postPage/${this.props.postObj.id}`}
                 >
-                    See full post
+                    <img class="thumbnail" src={this.props.postObj.img_url}></img>
                 </NavLink>
+                
             </div>
             <CaptionDisplay />
             </div>
