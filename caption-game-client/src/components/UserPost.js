@@ -4,7 +4,8 @@ export class UserPost extends Component {
     render() {
         return (
             <div>
-                <p>{this.props.postObj.img_url}</p>
+                <img src={this.props.postObj.img_url} alt=''></img>
+               
             </div>
         )
     }

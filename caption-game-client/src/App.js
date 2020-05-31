@@ -98,11 +98,11 @@ showLogin = () => {
         <Navbar showLogin={this.showLogin} />
         <Switch>
         <Route exact path="/newsfeed" render={(props) => <Newsfeed {...props} setCurrentPostObj={this.setCurrentPostObj} currentUser={this.state.currentUser}/>} />
-        <Route exact path="/profile" render={(props) => <ProfilePage {...props} getUserPosts={this.getUserPosts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
+        <Route exact path="/profile" render={(props) => <ProfilePage {...props}  getUserPosts={this.getUserPosts} currentUser={this.state.currentUser} userCaptions={this.state.currentUser.captions} />} />
       
         <Route exact path="/post" render={(props) => <NewPostForm {...props} currentUser={this.state.currentUser} getUserPosts={this.getUserPosts} addUserPost={this.addUserPost} />} />
         
-        <Route exact path={`/postPage/:id`} render={(props) => <PostPage {...props} currentPostObj={this.state.currentPostObj} currentUser={this.state.currentUser} />} />
+        <Route exact path={`/postPage/:id`} render={(props) => <PostPage {...props} getCaptions={this.getUserCaptions} currentPostObj={this.state.currentPostObj} currentUser={this.state.currentUser} />} />
         </Switch>
 
       </Router>

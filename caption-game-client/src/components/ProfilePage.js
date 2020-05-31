@@ -18,7 +18,7 @@ export default class ProfilePage extends Component {
         // console.log(posts)
         return(
             <div>
-                <h1>This is the profile page</h1>
+                <h1>{this.props.currentUser.username}</h1>
                 <div>
                     <h2>Posts</h2>
                     { this.state.posts.map(post => <UserPost key={post.id} postObj={post} />)}
@@ -26,13 +26,13 @@ export default class ProfilePage extends Component {
                 
                 </div>
                 <div>
-                    <p>{this.props.currentUser.username}</p>
-                    <p>User Bio</p>
-                    <p>User Profile</p>
+                   
+                    {/* <p>User Bio</p>
+                    <p>User Profile</p> */}
                 </div>
                 <div>
                     <h2>Captions</h2>
-                    {this.props.userCaptions.map(caption => <UserCaption key={caption.id} captionObj={caption}/> )}
+                    {this.props.currentUser.captions.map(caption => <UserCaption key={caption.id} captionObj={caption}/> )}
                 </div>
             </div>
         )

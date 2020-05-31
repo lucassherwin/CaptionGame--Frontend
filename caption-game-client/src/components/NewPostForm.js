@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom'
 
 export default class NewPostForm extends Component {
 state={
@@ -10,7 +11,7 @@ handleChange = (event) => {
     this.setState({img_url: event.target.value})
 }
 handleSubmit = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     fetch('http://localhost:3001/posts', {
         method: 'POST',
         headers: {
@@ -28,7 +29,7 @@ handleSubmit = (event) => {
         return(
         <form >
             <input onChange={this.handleChange} type="text" name="picture" value={this.state.img_url} />
-            <input onClick={this.handleSubmit} type="submit" name="submit" />
+            <NavLink to="/newsfeed"><input onClick={this.handleSubmit} type="submit" name="submit" /></NavLink>
         </form>
         )
     }

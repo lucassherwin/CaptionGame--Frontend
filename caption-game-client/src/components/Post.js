@@ -27,7 +27,7 @@ export default class Post extends Component {
                 </NavLink>
                 
             </div>
-            <CaptionDisplay />
+            {/* <CaptionDisplay /> */}
             </div>
         )
     }
